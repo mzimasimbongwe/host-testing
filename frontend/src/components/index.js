@@ -1,4 +1,4 @@
-import Navbar from "./NavBar/Navbar";
-import Hero from "./Hero/Hero";
+import Navbar from "./Landing.Page/Navbar";
+import Hero from "./Landing.Page/Hero";
 
 export { Navbar, Hero };
