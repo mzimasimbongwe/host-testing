@@ -1,5 +1,5 @@
 import React from "react";
-import { bgvideo, heroImg, student } from "../../assets";
+import { bgvideo, heroImg, apply } from "../../assets";
 
 const Hero = () => {
   return (
@@ -13,17 +13,17 @@ const Hero = () => {
           className="object-cover w-full h-full "
         />
       </div>
-      <div className="absolute inset-0 bg-black opacity-80"></div>
-      <div className="absolute w-full inset-0 py-20 text-white ">
-        <div className="md:max-w-[1480px] m-auto grid md:grid-cols-2 gap-4 max-w-[540px]">
+      <div className="absolute inset-0 bg-black opacity-90"></div>
+      <div className="absolute w-full inset-0 py-24 text-white ">
+        <div className="md:max-w-[1480px] m-auto grid md:grid-cols-2 gap-8 max-w-[540px]">
           <div className="flex flex-col justify-start gap-4">
             <h1 className="py-2 text-4xl text-[#9FF3C1] font-bold">
               Bridging Futures, Creating Opportunities
             </h1>
-            <p className="md:leading-[44px] py-4 md:text-2xl text-1xl font-medium">
+            <p className="md:leading-[44px] py-4 md:text-lg text-1xl font-medium ">
               <span className="text-[#9FF3C1]">Welcome to EduConnect,</span>{" "}
-              where we are more than just an educational platform; <br></br>
-              We are architects of futures and creators of opportunities. Our
+              where we are more than just an educational platform; we are
+              architects of futures and creators of opportunities. Our
               commitment is to bridge the gap between students and their dreams,
               educators and their goals, and institutions and the innovative
               future of learning.
@@ -34,7 +34,7 @@ const Hero = () => {
         <div className="w-full">
           <div className="md:max-w-[1480px] max-w-[540px] m-auto py-20 flex justify-center">
             <button className="border border-[#47DEFF] flex items-center px-2 py-2 rounded-md bg-black text-white gap-2 font-bold">
-              <img src={student} />
+              <img src={apply} />
               Apply!
             </button>
           </div>
