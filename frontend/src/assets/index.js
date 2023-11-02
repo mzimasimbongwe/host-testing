@@ -5,5 +5,15 @@ import hamburgerMenu from "./hamburgerMenu.svg";
 import closeMenu from "./closeMenu.svg";
 import bgvideo from "./bgvideo.mp4";
 import heroImg from "./heroImg.jpg";
+import apply from "./apply.png";
 
-export { logo, admin, student, hamburgerMenu, closeMenu, bgvideo, heroImg };
+export {
+  logo,
+  admin,
+  student,
+  hamburgerMenu,
+  closeMenu,
+  bgvideo,
+  heroImg,
+  apply,
+};
