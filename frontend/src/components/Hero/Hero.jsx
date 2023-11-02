@@ -26,15 +26,19 @@ const Hero = () => {
               architects of futures and creators of opportunities. Our
               commitment is to bridge the gap between students and their dreams,
               educators and their goals, and institutions and the innovative
-              future of learning.
+              future of learning. <br /> <br />
+              At EduConnect, we believe in the transformative power of
+              education. We are dedicated to breaking down barriers and ensuring
+              that quality education is accessible to all. Join us in shaping a
+              brighter future for learners worldwide
             </p>
           </div>
           <img src={heroImg} className="rounded-lg h-[auto] " />
         </div>
         <div className="w-full">
           <div className="md:max-w-[1480px] max-w-[540px] m-auto py-20 flex justify-center">
-            <button className="border border-[#47DEFF] flex items-center px-2 py-2 rounded-md bg-black text-white gap-2 font-bold">
-              <img src={apply} />
+            <button className="border border-[#47DEFF] flex items-center px-8 py-4 rounded-md bg-black text-white text-2xl gap-4 font-bold transition transform hover:bg-[#47DEFF] animate animate-bounce hover:scale-105">
+              <img src={apply} alt="Apply Icon" />
               Apply!
             </button>
           </div>
