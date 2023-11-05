@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { logo } from "../../assets";
 
 const SignUp = () => {
@@ -9,10 +8,10 @@ const SignUp = () => {
         <div className="flex flex-wrap items-center">
           <div className="hidden w-full xl:block xl:w-1/2">
             <div className="py-17.5 px-26 text-center">
-              <Link className="mb-5.5 inline-block" to="/">
+              <div className="mb-5.5 inline-block">
                 <img className="hidden dark:block" src={logo} alt="Logo" />
                 <img className="dark:hidden" src={logo} alt="Logo" />
-              </Link>
+              </div>
               <p className="2xl:px-20">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit
                 suspendisse.
@@ -291,7 +290,7 @@ const SignUp = () => {
                   <input
                     type="submit"
                     value="Create account"
-                    className="w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90"
+                    className="w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-black transition hover:bg-opacity-90"
                   />
                 </div>
 
@@ -333,12 +332,7 @@ const SignUp = () => {
                 </button>
 
                 <div className="mt-6 text-center">
-                  <p>
-                    Already have an account?{" "}
-                    <Link to="/auth/signin" className="text-primary">
-                      Sign in
-                    </Link>
-                  </p>
+                  <p>Already have an account? Sign in</p>
                 </div>
               </form>
             </div>
