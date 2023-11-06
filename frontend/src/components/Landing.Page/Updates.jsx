@@ -44,7 +44,6 @@ const LatestUpdates = () => {
                   education.
                 </p>
               </div>
-              {/* Add another event here */}
               <div className="bg-green-200 rounded-lg p-4">
                 <p className="text-lg font-bold mb-2">
                   Community Hall Session at Flagstaff Community Hall
