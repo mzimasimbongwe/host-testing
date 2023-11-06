@@ -48,7 +48,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <div className="w-full flex justify-center ">
+      <div className="">
         <button className="border border-[#47DEFF] flex items-center px-8 py-4 rounded-md bg-black text-white text-2xl gap-4 font-bold transition transform hover:bg-[#47DEFF] animate-bounce hover:scale-105">
           <img src={apply} alt="Apply Icon" />
           Apply!
