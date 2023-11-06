@@ -23,7 +23,6 @@ const LatestUpdates = () => {
                 className="w-full h-auto rounded-lg"
               />
             </div>
-            {/* First Event and Additional Events as Cards (column on smaller screens) */}
             <div className="md:w-1/2">
               <div className="bg-blue-200 rounded-lg p-4 mb-4">
                 <p className="text-lg font-bold mb-2">
