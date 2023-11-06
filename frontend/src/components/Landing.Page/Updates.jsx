@@ -1,5 +1,5 @@
 import React from "react";
-import { study, learn } from "../../assets";
+import { updates, learn } from "../../assets";
 import MediaScreen from "./media";
 
 const LatestUpdates = () => {
@@ -19,7 +19,7 @@ const LatestUpdates = () => {
             {/* Image for Second and Third Events (parallel on big screens) */}
             <div className="md:w-1/2 md:mr-4">
               <img
-                src={study}
+                src={updates}
                 alt="Event Images"
                 className="w-full h-auto rounded-lg"
               />
@@ -72,5 +72,4 @@ const LatestUpdates = () => {
     </div>
   );
 };
-
 export default LatestUpdates;
