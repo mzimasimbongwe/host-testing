@@ -8,6 +8,7 @@ import heroImg from "./heroImg.jpg";
 import apply from "./apply.png";
 import learn from "./learn.png";
 import study from "./studywithus.jpg";
+import updates from "./updates.jpg";
 
 export {
   logo,
@@ -20,4 +21,5 @@ export {
   apply,
   learn,
   study,
+  updates,
 };
