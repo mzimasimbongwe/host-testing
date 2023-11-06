@@ -16,7 +16,6 @@ const LatestUpdates = () => {
             about the transformative power of education.
           </p>
           <div className="md:flex md:items-start">
-            {/* Image for Second and Third Events (parallel on big screens) */}
             <div className="md:w-1/2 md:mr-4">
               <img
                 src={updates}
