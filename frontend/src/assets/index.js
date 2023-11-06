@@ -6,6 +6,8 @@ import closeMenu from "./closeMenu.svg";
 import bgvideo from "./bgvideo.mp4";
 import heroImg from "./heroImg.jpg";
 import apply from "./apply.png";
+import learn from "./learn.png";
+import study from "./studywithus.jpg";
 
 export {
   logo,
@@ -16,4 +18,6 @@ export {
   bgvideo,
   heroImg,
   apply,
+  learn,
+  study,
 };
