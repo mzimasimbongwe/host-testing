@@ -5,7 +5,7 @@ import AboutUs from "./components/Landing.Page/About";
 import StudyWithUs from "./components/Landing.Page/Study.Page";
 import LatestUpdates from "./components/Landing.Page/Updates";
 import Login from "./pages/authentication/Login";
-import Signup from "./pages/authentication/Signup";
+import Signup from "./pages/authentication/SignUp";
 import Status from "./pages/User_Profile/Status";
 import Apply from "./pages/authentication/Apply";
 
