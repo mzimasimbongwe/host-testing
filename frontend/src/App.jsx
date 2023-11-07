@@ -1,13 +1,15 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Router, Routes } from "react-router-dom";
 import { Hero, Navbar } from "./components";
 import AboutUs from "./components/Landing.Page/About";
 import StudyWithUs from "./components/Landing.Page/Study.Page";
 import LatestUpdates from "./components/Landing.Page/Updates";
-import Login from "./pages/authentication/Login"; // Import the Login component
-import Signup from "./pages/authentication/Signup"; // Import the Signup component
+import Login from "./pages/authentication/Login";
+import Signup from "./pages/authentication/Signup";
+import Status from "./pages/User_Profile/Status";
+import Apply from "./pages/authentication/Apply";
 
-function LandingApp() {
+function App() {
   return (
     <div>
       <Navbar />
@@ -16,12 +18,13 @@ function LandingApp() {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/study" element={<StudyWithUs />} />
         <Route path="/updates" element={<LatestUpdates />} />
-        <Route path="/login" element={<Login />} /> {/* Add the Login route */}
-        <Route path="/signup" element={<Signup />} /> {/* Add the Sign Up route */}
-        {/* Add more routes for the landing page as needed */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/status" element={<Status />} />
+        <Route path="/apply" element={<Apply />} />
       </Routes>
     </div>
   );
 }
 
-export default LandingApp;
+export default App;

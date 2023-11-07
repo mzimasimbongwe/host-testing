@@ -7,7 +7,7 @@ const Navbar = () => {
   const navigate = useNavigate(); // Use useNavigate to programmatically navigate
 
   const handleClick = () => setToggle(!toggle);
-  
+
   const handleAdminClick = () => {
     navigate("/login");
   };
@@ -33,21 +33,21 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="hidden md:flex gap-5 h-[50px]">
-          
-            <button
-              onClick={handleStudentClick} // Call the handleAdminClick function
-              className="flex justify-between items-center w-full px-3 py-4 rounded-md bg-black text-white gap-2 font-bold"
-            >
-              <img src={admin} />
-              Admin
-            </button>
-            
-              <button
-              onClick={handleAdminClick}
-              className="flex justify-between items-center w-full px-3 py-4 rounded-md bg-black text-white gap-2 font-bold">
-                <img src={student} />
-                Student
-              </button>
+          <button
+            onClick={handleStudentClick} // Call the handleAdminClick function
+            className="flex justify-between items-center w-full px-3 py-4 rounded-md bg-black text-white gap-2 font-bold"
+          >
+            <img src={admin} />
+            Admin
+          </button>
+
+          <button
+            onClick={handleAdminClick}
+            className="flex justify-between items-center w-full px-4 py-4 rounded-md bg-black text-white gap-2 font-bold"
+          >
+            <img src={student} />
+            Student
+          </button>
         </div>
         <div className="md:hidden " onClick={handleClick}>
           <img src={toggle ? closeMenu : hamburgerMenu} />
@@ -77,7 +77,7 @@ const Navbar = () => {
               <img src={student} />
               Student
             </button>
-           </div>
+          </div>
         </ul>
       </div>
     </div>
