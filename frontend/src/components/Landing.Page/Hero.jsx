@@ -1,5 +1,8 @@
 import React from "react";
 import { bgvideo, heroImg, apply } from "../../assets";
+import AboutUs from "./About";
+import StudyWithUs from "./Study.Page";
+import LatestUpdates from "./Updates";
 
 const Hero = () => {
   const isMobileScreen = window.innerWidth < 768;
@@ -54,7 +57,11 @@ const Hero = () => {
           Apply!
         </button>
       </div>
+      <AboutUs />
+      <StudyWithUs />
+      <LatestUpdates />
     </div>
+    
   );
 };
 
