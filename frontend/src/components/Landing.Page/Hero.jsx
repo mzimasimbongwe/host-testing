@@ -2,7 +2,7 @@ import React from "react";
 import { bgvideo, heroImg, apply } from "../../assets";
 
 const Hero = () => {
-  const isMobileScreen = window.innerWidth < 768; // Assuming the breakpoint for mobile is 768px, you can adjust this value as needed.
+  const isMobileScreen = window.innerWidth < 768;
 
   return (
     <div className="relative w-full h-screen bg-main py-6 md:py-24">
@@ -24,12 +24,12 @@ const Hero = () => {
             isMobileScreen ? "md:hidden" : ""
           }`}
         >
-          <div className="md:max-w-[1480px] max-w-[540px] mx-auto grid md:grid-cols-2 gap-8 max-w-[540px]">
+          <div className="md:max-w-[1480px]  mx-auto grid md:grid-cols-2 gap-8">
             <div className="flex flex-col justify-start gap-4">
-              <h1 className="py-2 text-4xl text-[#9FF3C1] font-bold">
+              <h1 className="text-4xl text-[#9FF3C1] font-bold">
                 Bridging Futures, Creating Opportunities
               </h1>
-              <p className="md:leading-[44px] py-4 md:text-lg text-1xl font-medium ">
+              <p className="md:leading-[44px] md:text-lg text-1xl font-medium mt-8 ">
                 <span className="text-[#9FF3C1]">Welcome to EduConnect,</span>{" "}
                 where we are more than just an educational platform; we are
                 architects of futures and creators of opportunities. Our
@@ -48,7 +48,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <div className="">
+      <div className="flex justify-center">
         <button className="border border-[#47DEFF] flex items-center px-8 py-4 rounded-md bg-black text-white text-2xl gap-4 font-bold transition transform hover:bg-[#47DEFF] animate-bounce hover:scale-105">
           <img src={apply} alt="Apply Icon" />
           Apply!

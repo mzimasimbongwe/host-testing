@@ -16,16 +16,16 @@ const LatestUpdates = () => {
             about the transformative power of education.
           </p>
           <div className="md:flex md:items-start">
-            <div className="md:w-1/2 md:mr-4">
+            <div className="md:w-1/2 md:mr-20">
               <img
                 src={updates}
                 alt="Event Images"
                 className="w-full h-auto rounded-lg"
               />
             </div>
-            <div className="md:w-1/2">
+            <div className="md:w-1/2 ">
               <div className="bg-blue-200 rounded-lg p-4 mb-4">
-                <p className="text-lg font-bold mb-2">
+                <p className="text-lg font-bold mb-2 ">
                   Visit to Ngobozana School at Flagstaff (20/02/2023):
                 </p>
                 <p>
