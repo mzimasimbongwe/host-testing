@@ -1,5 +1,6 @@
 import React from "react";
 import { study, learn } from "../../assets";
+import { Link } from "react-router-dom";
 const StudyWithUs = () => {
   return (
     <div className="w-full bg-[#F5F5F5] py-24 py-6 md:py-24 ">
@@ -16,10 +17,12 @@ const StudyWithUs = () => {
             Ready to explore the world of EduConnect?
           </p>
           <div className="py-10">
-            <button className="border border-[#47DEFF] flex items-center px-6 py-2 rounded-md bg-black text-white text-lg lg:text-xl font-semibold gap-2 transition transform hover:bg-[#47DEFF] animate-pulse hover:scale-105">
-              Learn More!
-              <img src={learn} alt="Apply Icon" />
-            </button>
+            <Link to="/studyw">
+              <button className="border border-[#47DEFF] flex items-center px-6 py-2 rounded-md bg-black text-white text-lg lg:text-xl font-semibold gap-2 transition transform hover:bg-[#47DEFF] animate-pulse hover:scale-105">
+                Learn More!
+                <img src={learn} alt="Apply Icon" />
+              </button>
+            </Link>
           </div>
         </div>
         <div className="md:w-1/2 mt-6 md:mt-0">

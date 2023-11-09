@@ -1,6 +1,7 @@
 import React from "react";
 import { updates, learn } from "../../assets";
 import MediaScreen from "./media";
+import { Link } from "react-router-dom";
 
 const LatestUpdates = () => {
   return (
@@ -56,10 +57,12 @@ const LatestUpdates = () => {
                 </p>
               </div>
               <div className="py-10">
-                <button className="border border-[#47DEFF] flex items-center px-6 py-2 rounded-md bg-black text-white text-lg lg:text-xl font-semibold gap-2 transition transform hover:bg-[#47DEFF] animate-pulse hover:scale-105">
-                  Learn More!
-                  <img src={learn} alt="Apply Icon" />
-                </button>
+                <Link to="/updates">
+                  <button className="border border-[#47DEFF] flex items-center px-6 py-2 rounded-md bg-black text-white text-lg lg:text-xl font-semibold gap-2 transition transform hover:bg-[#47DEFF] animate-pulse hover:scale-105">
+                    Learn More!
+                    <img src={learn} alt="Apply Icon" />
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
