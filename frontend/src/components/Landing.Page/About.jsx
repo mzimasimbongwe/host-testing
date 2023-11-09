@@ -1,5 +1,6 @@
 import React from "react";
 import { learn } from "../../assets";
+import { Link } from "react-router-dom";
 
 const AboutUs = () => {
   return (
@@ -13,10 +14,13 @@ const AboutUs = () => {
             who we are, our mission, and the global community we're building.
           </p>
           <div className="py-10">
-            <button className="border border-[#47DEFF] flex items-center px-6 py-2 rounded-md bg-black text-white text-lg lg:text-xl font-semibold gap-2 transition transform hover:bg-[#47DEFF] animate-pulse hover:scale-105">
-              Learn More!
-              <img src={learn} alt="Apply Icon" />
-            </button>
+            <Link to="/aboutus">
+              {" "}
+              <button className="border border-[#47DEFF] flex items-center px-6 py-2 rounded-md bg-black text-white text-lg lg:text-xl font-semibold gap-2 transition transform hover:bg-[#47DEFF] animate-pulse hover:scale-105">
+                Learn More!
+                <img src={learn} alt="Apply Icon" />
+              </button>
+            </Link>
           </div>
         </div>
         <div className="w-full md:w-1/2 p-4 flex space-x-4">

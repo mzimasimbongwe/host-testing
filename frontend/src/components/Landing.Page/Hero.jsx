@@ -4,7 +4,6 @@ import AboutUs from "./About";
 import StudyWithUs from "./Study.Page";
 import LatestUpdates from "./Updates";
 import Footer from "./Footer";
-import Login from "../../pages/Login";
 
 const Hero = () => {
   const isMobileScreen = window.innerWidth < 768;
