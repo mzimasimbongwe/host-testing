@@ -13,6 +13,7 @@ import Community from "./pages/Community/Community";
 import Media from "./pages/Media/Media";
 import School from "./pages/StudyWithUs/StudyWithUs";
 import Contact from "./pages/Contact/Contact";
+import Prospector from "./pages/Prospector/Prospector";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/status" element={<Status />} />
         <Route path="/apply" element={<Apply />} />
+        <Route path="/prospectus" element={<Prospector />} />
         <Route path="/aboutus" element={<About />} />
         <Route path="/community" element={<Community />} />
         <Route path="/media" element={<Media />} />

@@ -16,9 +16,6 @@ const Navbar = () => {
     navigate("/login");
   };
 
-  const HandleHome = () => {
-    navigate("/hero");
-  };
   return (
     <div className="w-full h-[100px] bg-white border-b">
       <div className="md:max-w-[1480px] max-w-[540px] m-auto w-full h-full flex justify-between items-center">
@@ -42,7 +39,7 @@ const Navbar = () => {
             <Link to="/media">
               <li>Media</li>
             </Link>
-            <Link to="contact">
+            <Link to="/contact">
               <li>Contact Us</li>
             </Link>
           </ul>

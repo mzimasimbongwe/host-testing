@@ -57,7 +57,7 @@ const LatestUpdates = () => {
                 </p>
               </div>
               <div className="py-10">
-                <Link to="/updates">
+                <Link to="/media">
                   <button className="border border-[#47DEFF] flex items-center px-6 py-2 rounded-md bg-black text-white text-lg lg:text-xl font-semibold gap-2 transition transform hover:bg-[#47DEFF] animate-pulse hover:scale-105">
                     Learn More!
                     <img src={learn} alt="Apply Icon" />
