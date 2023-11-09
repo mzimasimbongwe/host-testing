@@ -10,6 +10,8 @@ import learn from "./learn.png";
 import study from "./studywithus.jpg";
 import updates from "./updates.jpg";
 import id from "./id.svg";
+import password from "./password.svg",
+import person from "./person.svg"
 
 export {
   logo,
@@ -24,4 +26,6 @@ export {
   study,
   updates,
   id,
+  password,
+  person,
 };
