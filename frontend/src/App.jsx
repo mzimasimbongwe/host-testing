@@ -8,6 +8,11 @@ import Status from "./pages/User_Profile/Status";
 import Apply from "./pages/authentication/Apply";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import About from "./pages/About/About";
+import Community from "./pages/Community/Community";
+import Media from "./pages/Media/Media";
+import School from "./pages/StudyWithUs/StudyWithUs";
+import Contact from "./pages/Contact/Contact";
 
 function App() {
   return (
@@ -22,6 +27,11 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/status" element={<Status />} />
         <Route path="/apply" element={<Apply />} />
+        <Route path="/aboutus" element={<About />} />
+        <Route path="/community" element={<Community />} />
+        <Route path="/media" element={<Media />} />
+        <Route path="/studyw" element={<School />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </div>
   );

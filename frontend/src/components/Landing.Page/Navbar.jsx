@@ -27,12 +27,24 @@ const Navbar = () => {
         </Link>
         <div className="hidden md:flex items-center">
           <ul className="flex gap-4">
-            <li onClick={HandleHome}>Home</li>
-            <li>Study With Us</li>
-            <li>About Us</li>
-            <li>Community</li>
-            <li>Media</li>
-            <li>Contact Us</li>
+            <Link to="/hero">
+              <li>Home</li>{" "}
+            </Link>
+            <Link to="/studyw">
+              <li>Study With Us</li>
+            </Link>
+            <Link to="/aboutus">
+              <li>About Us</li>
+            </Link>
+            <Link to="/community">
+              <li>Community</li>
+            </Link>
+            <Link to="/media">
+              <li>Media</li>
+            </Link>
+            <Link to="contact">
+              <li>Contact Us</li>
+            </Link>
           </ul>
         </div>
         <div className="hidden md:flex gap-5 h-[50px]">
