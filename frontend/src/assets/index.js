@@ -9,6 +9,7 @@ import apply from "./apply.png";
 import learn from "./learn.png";
 import study from "./studywithus.jpg";
 import updates from "./updates.jpg";
+import id from "./id.svg";
 
 export {
   logo,
@@ -22,4 +23,5 @@ export {
   learn,
   study,
   updates,
+  id,
 };
