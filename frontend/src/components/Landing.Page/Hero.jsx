@@ -4,6 +4,7 @@ import AboutUs from "./About";
 import StudyWithUs from "./Study.Page";
 import LatestUpdates from "./Updates";
 import Footer from "./Footer";
+import Login from "../../pages/Login";
 
 const Hero = () => {
   const isMobileScreen = window.innerWidth < 768;
@@ -30,7 +31,7 @@ const Hero = () => {
         >
           <div className="md:max-w-[1480px]  mx-auto grid md:grid-cols-2 gap-8">
             <div className="flex flex-col justify-start gap-4">
-              <h1 className="text-4xl text-[#9FF3C1] font-bold">
+              <h1 className="text-4xl text-main font-bold">
                 Bridging Futures, Creating Opportunities
               </h1>
               <p className="md:leading-[44px] md:text-lg text-1xl font-medium mt-8 ">
@@ -52,12 +53,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center">
-        <button className="border border-[#47DEFF] flex items-center px-8 py-4 rounded-md bg-black text-white text-2xl gap-4 font-bold transition transform hover:bg-[#47DEFF] animate-bounce hover:scale-105">
-          <img src={apply} alt="Apply Icon" />
-          Apply!
-        </button>
-      </div>
+
       <AboutUs />
       <StudyWithUs />
       <LatestUpdates />

@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
-const Login = () => {
+const LogIn = () => {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({
     email: "",
@@ -107,4 +107,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LogIn;

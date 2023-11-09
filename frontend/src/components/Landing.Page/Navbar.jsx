@@ -4,7 +4,7 @@ import { logo, admin, student, hamburgerMenu, closeMenu } from "../../assets";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
-  const navigate = useNavigate(); // Use useNavigate to programmatically navigate
+  const navigate = useNavigate();
 
   const handleClick = () => setToggle(!toggle);
 
@@ -16,15 +16,18 @@ const Navbar = () => {
     navigate("/login");
   };
 
+  const HandleHome = () => {
+    navigate("/hero");
+  };
   return (
     <div className="w-full h-[100px] bg-white border-b">
       <div className="md:max-w-[1480px] max-w-[540px] m-auto w-full h-full flex justify-between items-center">
-        <Link to="/">
+        <Link to="/hero">
           <img src={logo} className="h-[50px]" />
         </Link>
         <div className="hidden md:flex items-center">
           <ul className="flex gap-4">
-            <li>Home</li>
+            <li onClick={HandleHome}>Home</li>
             <li>Study With Us</li>
             <li>About Us</li>
             <li>Community</li>
@@ -34,7 +37,7 @@ const Navbar = () => {
         </div>
         <div className="hidden md:flex gap-5 h-[50px]">
           <button
-            onClick={handleStudentClick} // Call the handleAdminClick function
+            onClick={handleStudentClick}
             className="flex justify-between items-center w-full px-3 py-4 rounded-md bg-black text-white gap-2 font-bold"
           >
             <img src={admin} />
