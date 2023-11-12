@@ -11,6 +11,7 @@ export default {
         gray: "#C6C6C6",
         subMain: "#F3F9FF",
         border: "#F1F8FF",
+        errorm: "red-600",
       },
       screens: {
         xs: "475px",

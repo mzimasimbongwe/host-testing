@@ -14,6 +14,8 @@ import Media from "./pages/Media/Media";
 import School from "./pages/StudyWithUs/StudyWithUs";
 import Contact from "./pages/Contact/Contact";
 import Prospector from "./pages/Prospector/Prospector";
+import Admin from "./pages/Admin/Admin";
+import Reset from "./pages/Password/Reset";
 
 function App() {
   return (
@@ -31,9 +33,11 @@ function App() {
         <Route path="/prospectus" element={<Prospector />} />
         <Route path="/aboutus" element={<About />} />
         <Route path="/community" element={<Community />} />
+        <Route path="/admin" element={<Admin />} />
         <Route path="/media" element={<Media />} />
         <Route path="/studyw" element={<School />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/reset" element={<Reset />} />
       </Routes>
     </div>
   );

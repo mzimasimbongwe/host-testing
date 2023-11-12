@@ -8,11 +8,11 @@ export default function Header({
   linkUrl = "#",
 }) {
   return (
-    <div className="mb-10 mt-20">
+    <div className="mb-10 mt-10">
       <div className="flex justify-center">
-        <img alt="" className="h-14 w-14" src={logo} />
+        <img alt="" className="h-30 w-30" src={logo} />
       </div>
-      <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+      <h2 className="mt-5 text-center text-3xl font-extrabold text-gray-900">
         {heading}
       </h2>
       <p className="mt-2 text-center text-sm text-gray-600 mt-5">
