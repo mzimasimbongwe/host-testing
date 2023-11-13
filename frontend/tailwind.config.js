@@ -12,6 +12,7 @@ export default {
         subMain: "#F3F9FF",
         border: "#F1F8FF",
         errorm: "red-600",
+        button: "blue-500",
       },
       screens: {
         xs: "475px",

@@ -49,15 +49,6 @@ function Signup() {
       validationErrors.idnumber = "ID number is required";
     } else if (!/^\d{13}$/.test(idnumber)) {
       validationErrors.idnumber = "Invalid ID number";
-    } else {
-      // Validate RSA ID number format and checksum
-      const checkDigits = idnumber.slice(0, 13);
-      const checksum = idnumber.charAt(13);
-      const calculatedChecksum = calculateChecksum(checkDigits);
-
-      if (checksum !== calculatedChecksum) {
-        validationErrors.idnumber = "Invalid ID number";
-      }
     }
 
     setErrors(validationErrors);
@@ -103,7 +94,7 @@ function Signup() {
         if (error.response && error.response.status === 409) {
           setMessage("ID number already exists");
         } else {
-          setMessage("Error occurred during registration");
+          setMessage("Please provide correct RSA ID Number");
         }
         setTimeout(() => {
           setMessage("");
@@ -115,30 +106,6 @@ function Signup() {
         }, 5000);
       }
     }
-  };
-
-  // Function to calculate the RSA ID number checksum
-  const calculateChecksum = (idDigits) => {
-    const weights = [2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2]; // Weighting factors for each digit
-    let sum = 0;
-
-    for (let i = 0; i < idDigits.length; i++) {
-      let digit = parseInt(idDigits.charAt(i), 13);
-      digit *= weights[i]; // Multiply the digit by the corresponding weight
-      digit = digit.toString(); // Convert the product to a string
-
-      // Add the individual digits of the product together
-      for (let j = 0; j < digit.length; j++) {
-        sum += parseInt(digit.charAt(j), 13);
-      }
-    }
-
-    let checksum = (13 - (sum % 13)).toString(); // Calculate the checksum
-    if (checksum === "13") {
-      checksum = "0"; // If the checksum is 13, change it to 0
-    }
-
-    return checksum;
   };
 
   return (
