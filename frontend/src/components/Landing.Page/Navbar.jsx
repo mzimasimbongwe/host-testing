@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Import Link and useNavigate
+import { Link, useNavigate } from "react-router-dom";
 import { logo, admin, student, hamburgerMenu, closeMenu } from "../../assets";
 
 const Navbar = () => {
@@ -74,12 +74,24 @@ const Navbar = () => {
         }
       >
         <ul>
-          <li className="p-4 hover-bg-gray-100">Home</li>
-          <li className="p-4 hover-bg-gray-100">Study With Us</li>
-          <li className="p-4 hover-bg-gray-100">About Us</li>
-          <li className="p-4 hover-bg-gray-100">Community</li>
-          <li className="p-4 hover-bg-gray-100">Media</li>
-          <li className="p-4 hover-bg-gray-100">Contact Us</li>
+          <Link to="/hero">
+            <li>Home</li>{" "}
+          </Link>
+          <Link to="/studyw">
+            <li>Study With Us</li>
+          </Link>
+          <Link to="/aboutus">
+            <li>About Us</li>
+          </Link>
+          <Link to="/community">
+            <li>Community</li>
+          </Link>
+          <Link to="/media">
+            <li>Media</li>
+          </Link>
+          <Link to="/contact">
+            <li>Contact Us</li>
+          </Link>
           <div className="flex flex-col my-4 gap-4 ">
             <button className="border border-[#47DEFF] flex jusify-between items-center px-2 py-2 rounded-md bg-black text-white gap-2 font-bold">
               <img src={admin} />
