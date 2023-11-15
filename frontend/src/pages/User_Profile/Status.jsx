@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Status = () => {
+const StatusStudent = () => {
   const [applicationNumber, setApplicationNumber] = useState("");
   const [status, setStatus] = useState(null);
 
@@ -30,4 +30,4 @@ const Status = () => {
   );
 };
 
-export default Status;
+export default StatusStudent;

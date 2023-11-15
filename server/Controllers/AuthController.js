@@ -8,7 +8,7 @@ const idNumberPattern = /^0?\d{13}$/;
 
 module.exports.Signup = async (req, res, next) => {
   try {
-    const { email, password, passwordr, idnumber, username, createdAt } =
+    const { email, password, confirmPassword, idnumber, username, createdAt } =
       req.body;
 
     // Step 1: Length Check
@@ -30,14 +30,17 @@ module.exports.Signup = async (req, res, next) => {
         .json({ error: "Invalid citizenship in ID number" });
     }
 
-    const existingUser = await User.findOne({ idnumber, email });
-    if (existingUser) {
-      return res.json({ message: "User already exists" });
+    const existingUserByIdNumber = await User.findOne({ idnumber });
+    const existingUserByEmail = await User.findOne({ email });
+
+    if (existingUserByIdNumber || existingUserByEmail) {
+      return res.status(400).json({ error: "User already exists" });
     }
+
     const user = await User.create({
       email,
       password,
-      passwordr,
+      confirmPassword,
       idnumber,
       username,
       createdAt,
@@ -59,35 +62,27 @@ module.exports.Signup = async (req, res, next) => {
 module.exports.Login = async (req, res, next) => {
   try {
     const { idnumber, password } = req.body;
-
     if (!idnumber || !password) {
       return res.status(400).json({ message: "All fields are required" });
     }
-
     const user = await User.findOne({ idnumber });
-
     if (!user) {
       return res
         .status(401)
         .json({ message: "Incorrect ID number or password" });
     }
-
     const isPasswordValid = await bcrypt.compare(password, user.password);
-
     if (!isPasswordValid) {
       return res
         .status(401)
         .json({ message: "Incorrect ID number or password" });
     }
-
     const token = createSecretToken(user._id);
-
     res.cookie("token", token, {
       httpOnly: true,
       secure: true, // Enable this if using HTTPS
       sameSite: "strict", // Adjust according to your requirements
     });
-
     res
       .status(200)
       .json({ message: "User logged in successfully", success: true });

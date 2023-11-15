@@ -1,7 +1,7 @@
 import React from "react";
 
-const Community = () => {
-  return <div>Community Page</div>;
+const Comm = () => {
+  return <div>Communities Page</div>;
 };
 
-export default Community;
+export default Comm;

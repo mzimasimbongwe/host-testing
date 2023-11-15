@@ -8,8 +8,8 @@ export default function Navbar() {
   return (
     <div className="flex h-full">
       <aside
-        className={`fixed top-34 left-0 bg-blue-500 text-white  
-          max-h-80 overflow-y-auto
+        className={`fixed top-30 left-0 bg-blue-500 text-white  
+          max-h-auto w-auto ma overflow-y-auto
           ${open ? "w-64" : "w-16"} transition duration-300`}
       >
         <header className="flex items-center p-4">
@@ -21,19 +21,27 @@ export default function Navbar() {
         <nav className="px-4 py-3">
           <ul className="flex flex-col">
             <li>
-              <Link to="/students">Students</Link>
+              <Link to="/students" className="text-white hover:text-gray-300">
+                Students
+              </Link>
             </li>
             <li>
-              <Link to="/teachers">Teachers</Link>
+              <Link to="/teachers" className="text-white hover:text-gray-300">
+                Teachers
+              </Link>
             </li>
             <li>
-              <Link to="/classes">Classes</Link>
+              <Link to="/classes" className="text-white hover:text-gray-300">
+                Classes
+              </Link>
             </li>
           </ul>
         </nav>
       </aside>
 
-      <main className="flex-1 p-4 overflow-y-auto">
+      <main
+        className={`flex-1 p-10 overflow-y-auto ${open ? "ml-64" : "ml-16"}`}
+      >
         {/* Page content */}
         <h2>Dashboard</h2>
         <p>Welcome!</p>
