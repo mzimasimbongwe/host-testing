@@ -1,12 +1,11 @@
-// AuthRoute.js
+const { Signup, Login } = require("../Controllers/AuthController");
+const router = require("express").Router();
+const { resetPassword } = require("../Controllers/ResetControl");
+const { updatePassword } = require("../Controllers/UpdateController");
 
-const { Signup, Login } = require('../Controllers/AuthController');
-const router = require('express').Router();
-
-// Add new routes for Signup and Login
-router.post('/signup', Signup);
-router.post('/login', Login);
-
-// Update the existing route with userVerification
+router.post("/signup", Signup);
+router.post("/login", Login);
+router.post("/reset-password", resetPassword);
+router.post("/update-password", updatePassword);
 
 module.exports = router;
