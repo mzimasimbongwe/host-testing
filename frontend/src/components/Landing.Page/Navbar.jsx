@@ -1,30 +1,29 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { logo, admin, student, hamburgerMenu, closeMenu } from "../../assets";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
-  const navigate = useNavigate();
 
   const handleClick = () => setToggle(!toggle);
 
   const handleAdminClick = () => {
-    navigate("/loginadmin");
+    window.open("/loginadmin", "_blank");
   };
 
   const handleStudentClick = () => {
-    navigate("/login");
+    window.open("/login", "_blank");
   };
 
   return (
     <div className="w-full h-[100px] bg-white border-b">
       <div className="md:max-w-[1480px] max-w-[540px] m-auto w-full h-full flex justify-between items-center">
-        <Link to="/hero">
+        <Link to="/">
           <img src={logo} className="h-[50px]" />
         </Link>
         <div className="hidden md:flex items-center">
           <ul className="flex gap-4">
-            <Link to="/hero">
+            <Link to="/">
               <li>Home</li>{" "}
             </Link>
             <Link to="/studyw">
@@ -74,7 +73,7 @@ const Navbar = () => {
         }
       >
         <ul>
-          <Link to="/hero">
+          <Link to="/">
             <li>Home</li>{" "}
           </Link>
           <Link to="/studyw">
