@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Your password is required"],
   },
-  passwordr: {
+  confirmPassword: {
     type: String,
     required: [true, "Your confirmation password is required"],
   },
@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
 
 userSchema.pre("save", async function () {
   this.password = await bcrypt.hash(this.password, 12);
-  this.passwordr = await bcrypt.hash(this.passwordr, 12);
+  this.confirmPassword = await bcrypt.hash(this.confirmPassword, 12);
 });
 
 // Add a static method to the User model to fetch all users

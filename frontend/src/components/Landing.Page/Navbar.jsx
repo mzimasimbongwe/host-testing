@@ -9,7 +9,7 @@ const Navbar = () => {
   const handleClick = () => setToggle(!toggle);
 
   const handleAdminClick = () => {
-    navigate("/login");
+    navigate("/loginadmin");
   };
 
   const handleStudentClick = () => {
@@ -46,7 +46,7 @@ const Navbar = () => {
         </div>
         <div className="hidden md:flex gap-5 h-[50px]">
           <button
-            onClick={handleStudentClick}
+            onClick={handleAdminClick}
             className="flex justify-between items-center w-full px-3 py-4 rounded-md bg-black text-white gap-2 font-bold"
           >
             <img src={admin} />
@@ -54,7 +54,7 @@ const Navbar = () => {
           </button>
 
           <button
-            onClick={handleAdminClick}
+            onClick={handleStudentClick}
             className="flex justify-between items-center w-full px-4 py-4 rounded-md bg-black text-white gap-2 font-bold"
           >
             <img src={student} />
