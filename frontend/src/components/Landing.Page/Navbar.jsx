@@ -1,19 +1,18 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { logo, admin, student, hamburgerMenu, closeMenu } from "../../assets";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
-  const navigate = useNavigate();
 
   const handleClick = () => setToggle(!toggle);
 
   const handleAdminClick = () => {
-    navigate("/loginadmin");
+    window.open("/loginadmin", "_blank");
   };
 
   const handleStudentClick = () => {
-    navigate("/login");
+    window.open("/login", "_blank");
   };
 
   return (
@@ -74,7 +73,7 @@ const Navbar = () => {
         }
       >
         <ul>
-          <Link to="/hero">
+          <Link to="/here">
             <li>Home</li>{" "}
           </Link>
           <Link to="/studyw">

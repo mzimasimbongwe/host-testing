@@ -1,5 +1,5 @@
 import React from "react";
-import { bgvideo, heroImg, apply } from "../../assets";
+import { bgvideo, heroImg } from "../../assets";
 import AboutUs from "./About";
 import StudyWithUs from "./Study.Page";
 import LatestUpdates from "./Updates";

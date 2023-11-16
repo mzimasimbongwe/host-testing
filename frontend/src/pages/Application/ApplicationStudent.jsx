@@ -1,164 +1,336 @@
 import React, { useState } from "react";
-import "tailwindcss/tailwind.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import validator from "validator";
 
-function ApplicationForm() {
-  const [errors, setErrors] = useState({});
+const ApplicationForm = () => {
+  const [email, setEmail] = useState("");
+  const [idnumber, setIdNumber] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [street, setStreet] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zip, setZip] = useState("");
   const [message, setMessage] = useState("");
-  const [studentFirstName, setStudentFirstName] = useState("");
-  const [studentLastName, setStudentLastName] = useState("");
-  const [studentGrade, setStudentGrade] = useState("");
-  const navigate = useNavigate();
+  const [errors, setErrors] = useState({});
 
-  const validateForm = () => {
-    let validationErrors = {};
+  const handleInputChange = async (event) => {
+    const { name, value } = event.target;
+    let validationError = null;
 
-    // Validate student details
-    if (validator.isEmpty(studentFirstName)) {
-      validationErrors.studentFirstName = "Student first name is required";
+    switch (name) {
+      case "email":
+        if (validator.isEmpty(value)) {
+          validationError = "Email is required";
+        } else if (!validator.isEmail(value)) {
+          validationError = "Invalid email address";
+        } else {
+          try {
+            const response = await axios.get(
+              `http://localhost:4000/check-email/${value}`
+            );
+            if (response.data.exists) {
+              validationError = "Email already exists";
+            }
+          } catch (error) {
+            console.error("Error checking email:", error);
+          }
+        }
+        break;
+
+      case "idnumber":
+        if (validator.isEmpty(value)) {
+          validationError = "ID number is required";
+        } else if (!/^\d{13}$/.test(value)) {
+          validationError = "Invalid ID number";
+        } else {
+          try {
+            const response = await axios.get(
+              `http://localhost:4000/check-idnumber/${value}`
+            );
+            if (response.data.exists) {
+              validationError = "ID number already exists";
+            }
+          } catch (error) {
+            console.error("Error checking ID number:", error);
+          }
+        }
+        break;
+
+      case "dateOfBirth":
+        if (validator.isEmpty(value)) {
+          validationError = "Date of birth is required";
+        } else {
+          // Add your custom validation logic for dateOfBirth if needed
+        }
+        break;
+
+      case "firstName":
+        if (validator.isEmpty(value)) {
+          validationError = "First name is required";
+        } else {
+          // Add your custom validation logic for firstName if needed
+        }
+        break;
+
+      case "lastName":
+        if (validator.isEmpty(value)) {
+          validationError = "Last name is required";
+        } else {
+          // Add your custom validation logic for lastName if needed
+        }
+        break;
+
+      case "street":
+        if (validator.isEmpty(value)) {
+          validationError = "Street is required";
+        } else {
+          // Add your custom validation logic for street if needed
+        }
+        break;
+
+      case "city":
+        if (validator.isEmpty(value)) {
+          validationError = "City is required";
+        } else {
+          // Add your custom validation logic for city if needed
+        }
+        break;
+
+      case "state":
+        if (validator.isEmpty(value)) {
+          validationError = "State is required";
+        } else {
+          // Add your custom validation logic for state if needed
+        }
+        break;
+
+      case "zip":
+        if (validator.isEmpty(value)) {
+          validationError = "ZIP code is required";
+        } else {
+          // Add your custom validation logic for zip if needed
+        }
+        break;
+
+      default:
+        break;
     }
 
-    if (validator.isEmpty(studentLastName)) {
-      validationErrors.studentLastName = "Student second name is required";
-    }
-
-    if (validator.isEmpty(studentGrade)) {
-      validationErrors.studentGrade = "Student grade is required";
-    }
-
-    setErrors(validationErrors);
-
-    return Object.keys(validationErrors).length === 0;
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: validationError,
+    }));
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    if (validateForm()) {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formIsValid = Object.values(errors).every((error) => error === null);
+
+    if (formIsValid) {
+      if (Object.keys(formErrors).length > 0) {
+        setErrors(formErrors);
+        return;
+      }
+
       try {
         const response = await axios.post(
-          "http://localhost:4000/applystudent",
+          "http://localhost:4000/apply-student",
           {
-            studentFirstName,
-            studentLastName,
-            studentGrade,
-          },
-          {
-            withCredentials: true,
+            email,
+            idnumber,
+            dateOfBirth,
+            firstName,
+            lastName,
+            street,
+            city,
+            state,
+            zip,
           }
         );
 
-        const token = response.data.token;
-        setMessage("Registration Successful");
-
-        // Fetch users if needed
-
-        setTimeout(() => {
-          navigate("/submit");
-          localStorage.setItem("token", token);
-          setMessage("");
-          setStudentFirstName("");
-          setStudentLastName("");
-          setStudentGrade("");
-        }, 2000);
-      } catch (error) {
-        if (error.response && error.response.status === 409) {
-          setMessage("ID number already exists");
-        } else {
-          setMessage("Please provide correct RSA ID Number");
-        }
-
+        setMessage("Application submitted successfully");
         setTimeout(() => {
           setMessage("");
-          setStudentFirstName("");
-          setStudentLastName("");
-          setStudentGrade("");
+          setEmail("");
+          setIdNumber("");
+          setDateOfBirth("");
+          setFirstName("");
+          setLastName("");
+          setStreet("");
+          setCity("");
+          setState("");
+          setZip("");
         }, 5000);
+
+        console.log("Application submitted successfully:", response.data);
+      } catch (error) {
+        setMessage("Error submitting application");
+        console.error("Error submitting application:", error);
       }
     }
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} className="p-8">
-        <div className="grid grid-cols-2 gap-6">
-          <h2 className="text-xl font-bold mb-2 text-gray-800 dark:text-white">
-            Student Details
-          </h2>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-white">
-              Student First Name
-            </label>
-            <input
-              type="text"
-              name="studentFirstName"
-              value={studentFirstName}
-              placeholder="Enter student first name"
-              onChange={(e) => setStudentFirstName(e.target.value)}
-              className="mt-1 p-3 rounded-md w-full border border-stroke focus:outline-none focus:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-            />
-            {errors.studentFirstName && (
-              <p className="text-red-500 text-sm">{errors.studentFirstName}</p>
-            )}
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-white">
-              Student Last Name
-            </label>
-            <input
-              type="text"
-              name="studentLastName"
-              value={studentLastName}
-              placeholder="Enter student last name"
-              onChange={(e) => setStudentLastName(e.target.value)}
-              className="mt-1 p-3 rounded-md w-full border border-stroke focus:outline-none focus:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-            />
-            {errors.studentLastName && (
-              <p className="text-red-500 text-sm">{errors.studentLastName}</p>
-            )}
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-white">
-              Student Grade
-            </label>
-            <select
-              name="studentGrade"
-              value={studentGrade}
-              onChange={(e) => setStudentGrade(e.target.value)}
-              className="mt-1 p-3 rounded-md w-full border border-stroke focus:outline-none focus:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+    <div className="w-full bg-[#F5F5F5] py-24 py-6 md:py-24">
+      <div className="md:max-w-[1480px] max-w-[1390px] mx-auto w-full h-full flex flex-col md:flex-row justify-center md:justify-between items-center">
+        <div className="container mx-auto">
+          {message && (
+            <div
+              className={`flex justify-center p-4 mb-4 font-bold ${
+                message.includes("successfully")
+                  ? "text-green-500"
+                  : "text-red-500"
+              }`}
             >
-              <option value="" disabled>
-                Select Student Grade
-              </option>
-              <option value="grade1">Grade 1</option>
-              <option value="grade2">Grade 2</option>
-              <option value="grade3">Grade 3</option>
-              <option value="grade8">Grade 8</option>
-              <option value="grade9">Grade 9</option>
-              <option value="grade10">Grade 10</option>
-              <option value="grade11">Grade 11</option>
-              <option value="grade12">Grade 12</option>
-            </select>
-            {errors.studentGrade && (
-              <p className="text-red-500 text-sm">{errors.studentGrade}</p>
-            )}
-          </div>
+              {message}
+            </div>
+          )}
+          <h2 className="text-lg font-bold mb-4">Application Form</h2>
+          <form onSubmit={handleSubmit} className="mx-auto">
+            <div className="form-group">
+              <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+                <div className="w-full md:w-1/2 pr-2">
+                  <h3>Student Details</h3>
+                  <div className="flex mb-4">
+                    <div className="w-1/2 pr-2">
+                      <label className="block mb-1">First Name:</label>
+                      <input
+                        type="text"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        onBlur={handleInputChange}
+                        className="w-full border border-gray-300 px-2 py-1 rounded"
+                        required
+                      />
+                      {errors.firstName && (
+                        <div className="text-red-500">{errors.firstName}</div>
+                      )}
+                    </div>
+                    <div className="w-1/2 pl-2">
+                      <label className="block mb-1">Last Name:</label>
+                      <input
+                        type="text"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                        onBlur={handleInputChange}
+                        className="w-full border border-gray-300 px-2 py-1 rounded"
+                        required
+                      />
+                      {errors.lastName && (
+                        <div className="text-red-500">{errors.lastName}</div>
+                      )}
+                    </div>
+                  </div>
+                  <div className="mb-4">
+                    <label className="block mb-1">ID Number:</label>
+                    <input
+                      type="text"
+                      value={idnumber}
+                      onChange={(e) => setIdNumber(e.target.value)}
+                      onBlur={handleInputChange}
+                      className="w-full border border-gray-300 px-2 py-1 rounded"
+                      required
+                    />
+                    {errors.idnumber && (
+                      <div className="text-red-500">{errors.idnumber}</div>
+                    )}
+                  </div>
+                  <div className="mb-4">
+                    <label className="block mb-1">Date of Birth:</label>
+                    <input
+                      type="date"
+                      value={dateOfBirth}
+                      onChange={(e) => setDateOfBirth(e.target.value)}
+                      onBlur={handleInputChange}
+                      className="w-full border border-gray-300 px-2 py-1 rounded"
+                      required
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block mb-1">Email:</label>
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      onBlur={handleInputChange}
+                      className="w-full border border-gray-300 px-2 py-1 rounded"
+                      required
+                    />
+                    {errors.email && (
+                      <div className="text-red-500">{errors.email}</div>
+                    )}
+                  </div>
+                </div>
+                <div className="w-full md:w-1/2 pl-2">
+                  <h3>Address</h3>
+                  <div className="mb-4">
+                    <label className="block mb-1">Street:</label>
+                    <input
+                      type="text"
+                      value={street}
+                      onChange={(e) => setStreet(e.target.value)}
+                      className="w-full border border-gray-300 px-2 py-1 rounded"
+                      required
+                    />
+                    {errors.street && (
+                      <div className="text-red-500">{errors.street}</div>
+                    )}
+                  </div>
+                  <div className="mb-4">
+                    <label className="block mb-1">City:</label>
+                    <input
+                      type="text"
+                      value={city}
+                      onChange={(e) => setCity(e.target.value)}
+                      className="w-full border border-gray-300 px-2 py-1 rounded"
+                      required
+                    />
+                    {errors.city && (
+                      <div className="text-red-500">{errors.city}</div>
+                    )}
+                  </div>
+                  <div className="mb-4">
+                    <label className="block mb-1">State:</label>
+                    <input
+                      type="text"
+                      value={state}
+                      onChange={(e) => setState(e.target.value)}
+                      className="w-full border border-gray-300 px-2 py-1 rounded"
+                      required
+                    />
+                    {errors.state && (
+                      <div className="text-red-500">{errors.state}</div>
+                    )}
+                  </div>
+                  <div className="mb-4">
+                    <label className="block mb-1">Zip:</label>
+                    <input
+                      type="text"
+                      value={zip}
+                      onChange={(e) => setZip(e.target.value)}
+                      className="w-full border border-gray-300 px-2 py-1 rounded"
+                      required
+                    />
+                    {errors.zip && (
+                      <div className="text-red-500">{errors.zip}</div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button
+              type="submit"
+              className="bg-blue-500 text-white px-4 py-2 rounded"
+            >
+              Submit
+            </button>
+          </form>
         </div>
-
-        <div className="mt-8">
-          <button
-            type="submit"
-            className="w-full py-3 bg-primary text-black rounded-md font-medium text-lg focus:outline-none"
-          >
-            Submit Application
-          </button>
-        </div>
-      </form>
+      </div>
     </div>
   );
-}
+};
 
 export default ApplicationForm;
