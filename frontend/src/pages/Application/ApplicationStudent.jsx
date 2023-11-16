@@ -15,160 +15,88 @@ const ApplicationForm = () => {
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState({});
 
-  const handleInputChange = async (event) => {
-    const { name, value } = event.target;
-    let validationError = null;
+  const validateForm = () => {
+    const errors = {};
 
-    switch (name) {
-      case "email":
-        if (validator.isEmpty(value)) {
-          validationError = "Email is required";
-        } else if (!validator.isEmail(value)) {
-          validationError = "Invalid email address";
-        } else {
-          try {
-            const response = await axios.get(
-              `http://localhost:4000/check-email/${value}`
-            );
-            if (response.data.exists) {
-              validationError = "Email already exists";
-            }
-          } catch (error) {
-            console.error("Error checking email:", error);
-          }
-        }
-        break;
-
-      case "idnumber":
-        if (validator.isEmpty(value)) {
-          validationError = "ID number is required";
-        } else if (!/^\d{13}$/.test(value)) {
-          validationError = "Invalid ID number";
-        } else {
-          try {
-            const response = await axios.get(
-              `http://localhost:4000/check-idnumber/${value}`
-            );
-            if (response.data.exists) {
-              validationError = "ID number already exists";
-            }
-          } catch (error) {
-            console.error("Error checking ID number:", error);
-          }
-        }
-        break;
-
-      case "dateOfBirth":
-        if (validator.isEmpty(value)) {
-          validationError = "Date of birth is required";
-        } else {
-          // Add your custom validation logic for dateOfBirth if needed
-        }
-        break;
-
-      case "firstName":
-        if (validator.isEmpty(value)) {
-          validationError = "First name is required";
-        } else {
-          // Add your custom validation logic for firstName if needed
-        }
-        break;
-
-      case "lastName":
-        if (validator.isEmpty(value)) {
-          validationError = "Last name is required";
-        } else {
-          // Add your custom validation logic for lastName if needed
-        }
-        break;
-
-      case "street":
-        if (validator.isEmpty(value)) {
-          validationError = "Street is required";
-        } else {
-          // Add your custom validation logic for street if needed
-        }
-        break;
-
-      case "city":
-        if (validator.isEmpty(value)) {
-          validationError = "City is required";
-        } else {
-          // Add your custom validation logic for city if needed
-        }
-        break;
-
-      case "state":
-        if (validator.isEmpty(value)) {
-          validationError = "State is required";
-        } else {
-          // Add your custom validation logic for state if needed
-        }
-        break;
-
-      case "zip":
-        if (validator.isEmpty(value)) {
-          validationError = "ZIP code is required";
-        } else {
-          // Add your custom validation logic for zip if needed
-        }
-        break;
-
-      default:
-        break;
+    if (validator.isEmpty(email)) {
+      errors.email = "Email is required";
+    } else if (!validator.isEmail(email)) {
+      errors.email = "Invalid email address";
     }
 
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      [name]: validationError,
-    }));
+    if (validator.isEmpty(idnumber)) {
+      errors.idnumber = "ID number is required";
+    } else if (!/^\d{13}$/.test(idnumber)) {
+      errors.idnumber = "Invalid ID number";
+    }
+
+    if (validator.isEmpty(firstName)) {
+      errors.firstName = "First name is required";
+    }
+
+    if (validator.isEmpty(lastName)) {
+      errors.lastName = "Last name is required";
+    }
+
+    if (validator.isEmpty(street)) {
+      errors.street = "Street is required";
+    }
+
+    if (validator.isEmpty(city)) {
+      errors.city = "City is required";
+    }
+
+    if (validator.isEmpty(state)) {
+      errors.state = "State is required";
+    }
+
+    if (validator.isEmpty(zip)) {
+      errors.zip = "ZIP code is required";
+    }
+
+    return errors;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formIsValid = Object.values(errors).every((error) => error === null);
 
-    if (formIsValid) {
-      if (Object.keys(formErrors).length > 0) {
-        setErrors(formErrors);
-        return;
-      }
+    const formErrors = validateForm();
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+      return;
+    }
 
-      try {
-        const response = await axios.post(
-          "http://localhost:4000/apply-student",
-          {
-            email,
-            idnumber,
-            dateOfBirth,
-            firstName,
-            lastName,
-            street,
-            city,
-            state,
-            zip,
-          }
-        );
+    try {
+      const response = await axios.post("http://localhost:4000/apply-student", {
+        email,
+        idnumber,
+        dateOfBirth,
+        firstName,
+        lastName,
+        street,
+        city,
+        state,
+        zip,
+      });
 
-        setMessage("Application submitted successfully");
-        setTimeout(() => {
-          setMessage("");
-          setEmail("");
-          setIdNumber("");
-          setDateOfBirth("");
-          setFirstName("");
-          setLastName("");
-          setStreet("");
-          setCity("");
-          setState("");
-          setZip("");
-        }, 5000);
+      setMessage("Application submitted successfully");
+      setTimeout(() => {
+        setMessage("");
+        setEmail("");
+        setIdNumber("");
+        setDateOfBirth("");
+        setFirstName("");
+        setLastName("");
+        setStreet("");
+        setCity("");
+        setState("");
+        setZip("");
+      }, 5000);
 
-        console.log("Application submitted successfully:", response.data);
-      } catch (error) {
-        setMessage("Error submitting application");
-        console.error("Error submitting application:", error);
-      }
+      console.log("Application submitted successfully:", response.data);
+    } catch (error) {
+      setMessage("Error submitting application");
+      console.error("Error submitting application:", error);
     }
   };
 
@@ -200,7 +128,6 @@ const ApplicationForm = () => {
                         type="text"
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
-                        onBlur={handleInputChange}
                         className="w-full border border-gray-300 px-2 py-1 rounded"
                         required
                       />
@@ -214,7 +141,6 @@ const ApplicationForm = () => {
                         type="text"
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
-                        onBlur={handleInputChange}
                         className="w-full border border-gray-300 px-2 py-1 rounded"
                         required
                       />
@@ -229,7 +155,6 @@ const ApplicationForm = () => {
                       type="text"
                       value={idnumber}
                       onChange={(e) => setIdNumber(e.target.value)}
-                      onBlur={handleInputChange}
                       className="w-full border border-gray-300 px-2 py-1 rounded"
                       required
                     />
@@ -243,7 +168,6 @@ const ApplicationForm = () => {
                       type="date"
                       value={dateOfBirth}
                       onChange={(e) => setDateOfBirth(e.target.value)}
-                      onBlur={handleInputChange}
                       className="w-full border border-gray-300 px-2 py-1 rounded"
                       required
                     />
@@ -254,7 +178,6 @@ const ApplicationForm = () => {
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      onBlur={handleInputChange}
                       className="w-full border border-gray-300 px-2 py-1 rounded"
                       required
                     />
