@@ -18,12 +18,12 @@ const Navbar = () => {
   return (
     <div className="w-full h-[100px] bg-white border-b">
       <div className="md:max-w-[1480px] max-w-[540px] m-auto w-full h-full flex justify-between items-center">
-        <Link to="/">
+        <Link to="/hero">
           <img src={logo} className="h-[50px]" />
         </Link>
         <div className="hidden md:flex items-center">
           <ul className="flex gap-4">
-            <Link to="/">
+            <Link to="/hero">
               <li>Home</li>{" "}
             </Link>
             <Link to="/studyw">
@@ -73,7 +73,7 @@ const Navbar = () => {
         }
       >
         <ul>
-          <Link to="/">
+          <Link to="/here">
             <li>Home</li>{" "}
           </Link>
           <Link to="/studyw">

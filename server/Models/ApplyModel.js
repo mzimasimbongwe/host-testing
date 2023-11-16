@@ -1,7 +1,6 @@
 // Assuming you have Mongoose installed and required in your application
 const mongoose = require("mongoose");
 
-// Define the schema for the Application model
 const applicationSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -22,6 +21,22 @@ const applicationSchema = new mongoose.Schema({
     required: true,
   },
   lastName: {
+    type: String,
+    required: true,
+  },
+  street: {
+    type: String,
+    required: true,
+  },
+  city: {
+    type: String,
+    required: true,
+  },
+  state: {
+    type: String,
+    required: true,
+  },
+  zip: {
     type: String,
     required: true,
   },

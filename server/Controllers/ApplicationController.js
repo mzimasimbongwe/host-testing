@@ -5,7 +5,17 @@ const { createSecretToken } = require("../util/SecretToken");
 // Controller for submitting a new application
 exports.submitApplication = async (req, res, next) => {
   try {
-    const { email, idnumber, dateOfBirth, firstName, lastName } = req.body;
+    const {
+      email,
+      idnumber,
+      dateOfBirth,
+      firstName,
+      lastName,
+      street,
+      city,
+      state,
+      zip,
+    } = req.body;
 
     // Step 1: Length Check
     const idNumberPattern = /^[0-9]{13}$/;
@@ -42,6 +52,10 @@ exports.submitApplication = async (req, res, next) => {
       dateOfBirth,
       firstName,
       lastName,
+      street,
+      city,
+      state,
+      zip,
     });
 
     const token = createSecretToken(application._id);

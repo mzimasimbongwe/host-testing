@@ -119,7 +119,7 @@ function SignupS() {
           setIdnumber("");
           setPassword("");
           setconfirmPassword("");
-        }, 2000);
+        }, 5000);
       } catch (error) {
         // Handle error response
         if (error.response && error.response.status === 400) {
