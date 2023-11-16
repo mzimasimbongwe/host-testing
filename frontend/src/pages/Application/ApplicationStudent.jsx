@@ -1,164 +1,96 @@
 import React, { useState } from "react";
-import "tailwindcss/tailwind.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import validator from "validator";
 
-function ApplicationForm() {
-  const [errors, setErrors] = useState({});
-  const [message, setMessage] = useState("");
-  const [studentFirstName, setStudentFirstName] = useState("");
-  const [studentLastName, setStudentLastName] = useState("");
-  const [studentGrade, setStudentGrade] = useState("");
-  const navigate = useNavigate();
+const ApplicationForm = () => {
+  const [email, setEmail] = useState("");
+  const [idnumber, setIdNumber] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
-  const validateForm = () => {
-    let validationErrors = {};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    // Validate student details
-    if (validator.isEmpty(studentFirstName)) {
-      validationErrors.studentFirstName = "Student first name is required";
-    }
+    try {
+      const response = await axios.post("http://localhost:4000/apply-student", {
+        email,
+        idnumber,
+        dateOfBirth,
+        firstName,
+        lastName,
+      });
 
-    if (validator.isEmpty(studentLastName)) {
-      validationErrors.studentLastName = "Student second name is required";
-    }
-
-    if (validator.isEmpty(studentGrade)) {
-      validationErrors.studentGrade = "Student grade is required";
-    }
-
-    setErrors(validationErrors);
-
-    return Object.keys(validationErrors).length === 0;
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    if (validateForm()) {
-      try {
-        const response = await axios.post(
-          "http://localhost:4000/applystudent",
-          {
-            studentFirstName,
-            studentLastName,
-            studentGrade,
-          },
-          {
-            withCredentials: true,
-          }
-        );
-
-        const token = response.data.token;
-        setMessage("Registration Successful");
-
-        // Fetch users if needed
-
-        setTimeout(() => {
-          navigate("/submit");
-          localStorage.setItem("token", token);
-          setMessage("");
-          setStudentFirstName("");
-          setStudentLastName("");
-          setStudentGrade("");
-        }, 2000);
-      } catch (error) {
-        if (error.response && error.response.status === 409) {
-          setMessage("ID number already exists");
-        } else {
-          setMessage("Please provide correct RSA ID Number");
-        }
-
-        setTimeout(() => {
-          setMessage("");
-          setStudentFirstName("");
-          setStudentLastName("");
-          setStudentGrade("");
-        }, 5000);
-      }
+      console.log("Application submitted successfully:", response.data);
+    } catch (error) {
+      console.error("Error submitting application:", error);
     }
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} className="p-8">
-        <div className="grid grid-cols-2 gap-6">
-          <h2 className="text-xl font-bold mb-2 text-gray-800 dark:text-white">
-            Student Details
-          </h2>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-white">
-              Student First Name
-            </label>
+    <div className="container mx-auto">
+      <h2 className="text-lg font-bold mb-4">Application Form</h2>
+      <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+        <div className="flex mb-4">
+          <div className="w-1/2 mr-2">
+            <label className="block mb-1">First Name:</label>
             <input
               type="text"
-              name="studentFirstName"
-              value={studentFirstName}
-              placeholder="Enter student first name"
-              onChange={(e) => setStudentFirstName(e.target.value)}
-              className="mt-1 p-3 rounded-md w-full border border-stroke focus:outline-none focus:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              className="w-full border border-gray-300 px-2 py-1 rounded"
+              required
             />
-            {errors.studentFirstName && (
-              <p className="text-red-500 text-sm">{errors.studentFirstName}</p>
-            )}
           </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-white">
-              Student Last Name
-            </label>
+          <div className="w-1/2 ml-2">
+            <label className="block mb-1">Last Name:</label>
             <input
               type="text"
-              name="studentLastName"
-              value={studentLastName}
-              placeholder="Enter student last name"
-              onChange={(e) => setStudentLastName(e.target.value)}
-              className="mt-1 p-3 rounded-md w-full border border-stroke focus:outline-none focus:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              className="w-full border border-gray-300 px-2 py-1 rounded"
+              required
             />
-            {errors.studentLastName && (
-              <p className="text-red-500 text-sm">{errors.studentLastName}</p>
-            )}
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-white">
-              Student Grade
-            </label>
-            <select
-              name="studentGrade"
-              value={studentGrade}
-              onChange={(e) => setStudentGrade(e.target.value)}
-              className="mt-1 p-3 rounded-md w-full border border-stroke focus:outline-none focus:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-            >
-              <option value="" disabled>
-                Select Student Grade
-              </option>
-              <option value="grade1">Grade 1</option>
-              <option value="grade2">Grade 2</option>
-              <option value="grade3">Grade 3</option>
-              <option value="grade8">Grade 8</option>
-              <option value="grade9">Grade 9</option>
-              <option value="grade10">Grade 10</option>
-              <option value="grade11">Grade 11</option>
-              <option value="grade12">Grade 12</option>
-            </select>
-            {errors.studentGrade && (
-              <p className="text-red-500 text-sm">{errors.studentGrade}</p>
-            )}
           </div>
         </div>
-
-        <div className="mt-8">
-          <button
-            type="submit"
-            className="w-full py-3 bg-primary text-black rounded-md font-medium text-lg focus:outline-none"
-          >
-            Submit Application
-          </button>
+        <div className="mb-4">
+          <label className="block mb-1">Email:</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full border border-gray-300 px-2 py-1 rounded"
+            required
+          />
         </div>
+        <div className="mb-4">
+          <label className="block mb-1">ID Number:</label>
+          <input
+            type="text"
+            value={idnumber}
+            onChange={(e) => setIdNumber(e.target.value)}
+            className="w-full border border-gray-300 px-2 py-1 rounded"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block mb-1">Date of Birth:</label>
+          <input
+            type="date"
+            value={dateOfBirth}
+            onChange={(e) => setDateOfBirth(e.target.value)}
+            className="w-full border border-gray-300 px-2 py-1 rounded"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          className="bg-blue-500 text-white px-4 py-2 rounded"
+        >
+          Submit
+        </button>
       </form>
     </div>
   );
-}
+};
 
 export default ApplicationForm;

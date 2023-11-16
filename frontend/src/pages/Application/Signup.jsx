@@ -15,7 +15,7 @@ function SignupS() {
   const [username, setUsername] = useState("");
   const [idnumber, setIdnumber] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordr, setPasswordr] = useState("");
+  const [confirmPassword, setconfirmPassword] = useState("");
   const navigate = useNavigate();
 
   const handleInputChange = async (event) => {
@@ -73,7 +73,7 @@ function SignupS() {
         }
         break;
 
-      case "passwordr":
+      case "confirmPassword":
         if (validator.isEmpty(value)) {
           validationError = "Confirm Password is required";
         } else if (value !== password) {
@@ -102,7 +102,7 @@ function SignupS() {
           email,
           username,
           password,
-          passwordr,
+          confirmPassword,
           idnumber,
         });
 
@@ -118,7 +118,7 @@ function SignupS() {
           setUsername("");
           setIdnumber("");
           setPassword("");
-          setPasswordr("");
+          setconfirmPassword("");
         }, 2000);
       } catch (error) {
         // Handle error response
@@ -133,7 +133,7 @@ function SignupS() {
           setUsername("");
           setIdnumber("");
           setPassword("");
-          setPasswordr("");
+          setconfirmPassword("");
         }, 5000);
       }
     }
@@ -414,15 +414,17 @@ function SignupS() {
                   <div className="relative">
                     <input
                       type="password"
-                      name="passwordr"
-                      value={passwordr}
+                      name="confirmPassword"
+                      value={confirmPassword}
                       placeholder="Re-enter your password"
-                      onChange={(e) => setPasswordr(e.target.value)}
+                      onChange={(e) => setconfirmPassword(e.target.value)}
                       onBlur={handleInputChange}
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                     />
-                    {errors.passwordr && (
-                      <span className="text-red-600">{errors.passwordr}</span>
+                    {errors.confirmPassword && (
+                      <span className="text-red-600">
+                        {errors.confirmPassword}
+                      </span>
                     )}
                     <span className="absolute right-4 top-4">
                       <img

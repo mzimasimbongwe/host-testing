@@ -8,6 +8,11 @@ const authRoute = require("./Routes/AuthRoute");
 const { resetPassword } = require("./Controllers/ResetControl");
 const User = require("./Models/UserModel");
 const { updatePassword } = require("./Controllers/UpdateController");
+const {
+  submitApplication,
+  deleteApplication,
+  getApplication,
+} = require("./Controllers/ApplicationController");
 
 const { MONGO_URL, PORT } = process.env;
 
@@ -73,6 +78,13 @@ app.get("/check-idnumber/:idnumber", async (req, res) => {
 
 app.post("/password/reset", resetPassword);
 app.post("/update-password", updatePassword);
+app.use("/apply-student", submitApplication);
+
+// Endpoint to delete an application by ID
+app.delete("/apply-delete/idnumber/:idnumber", deleteApplication);
+
+// Endpoint to get an application by ID
+app.get("/apply-get/idnumber/:idnumber", getApplication);
 
 app.use("/", authRoute);
 
